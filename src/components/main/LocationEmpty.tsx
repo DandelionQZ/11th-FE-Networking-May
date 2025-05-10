@@ -1,5 +1,5 @@
 import React from 'react';
-import dayClouds from './assets/dayClouds.svg';
+import dayClouds from '../../assets/dayClouds.svg';
 
 const LocationEmpty: React.FC = () => {
   return (
