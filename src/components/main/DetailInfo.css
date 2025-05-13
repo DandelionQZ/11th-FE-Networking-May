@@ -1,0 +1,24 @@
+.detail-info {
+  display: flex;
+  width: 120px;
+  padding: 12px 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background-color: #f6ffcc;
+}
+
+.detail-type {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Pretendard', sans-serif;
+  color: #292e2e;
+}
+
+.detail-value {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Pretendard', sans-serif;
+  color: #ffc532;
+}
