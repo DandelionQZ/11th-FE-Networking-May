@@ -4,47 +4,47 @@ export const hourlyData = [
     temp: 5,
   },
   {
-    name: '07',
+    time: '07',
     temp: 6,
   },
   {
-    name: '08',
+    time: '08',
     temp: 8,
   },
   {
-    name: '09',
+    time: '09',
     temp: 9,
   },
   {
-    name: '10',
+    time: '10',
     temp: 13,
   },
   {
-    name: '11',
+    time: '11',
     temp: 15,
   },
   {
-    name: '12',
+    time: '12',
     temp: 17,
   },
   {
-    name: '13',
+    time: '13',
     temp: 18,
   },
   {
-    name: '14',
+    time: '14',
     temp: 19,
   },
   {
-    name: '15',
+    time: '15',
     temp: 19,
   },
   {
-    name: '16',
+    time: '16',
     temp: 18,
   },
   {
-    name: '17',
+    time: '17',
     temp: 16,
   },
   {
@@ -52,47 +52,47 @@ export const hourlyData = [
     temp: 5,
   },
   {
-    name: '19',
+    time: '19',
     temp: 6,
   },
   {
-    name: '20',
+    time: '20',
     temp: 8,
   },
   {
-    name: '21',
+    time: '21',
     temp: 9,
   },
   {
-    name: '22',
+    time: '22',
     temp: 13,
   },
   {
-    name: '23',
+    time: '23',
     temp: 15,
   },
   {
-    name: '00',
+    time: '00',
     temp: 17,
   },
   {
-    name: '01',
+    time: '01',
     temp: 18,
   },
   {
-    name: '02',
+    time: '02',
     temp: 19,
   },
   {
-    name: '03',
+    time: '03',
     temp: 19,
   },
   {
-    name: '04',
+    time: '04',
     temp: 18,
   },
   {
-    name: '05',
+    time: '05',
     temp: 16,
   },
 ];
