@@ -1,4 +1,4 @@
-export const formatDateToMonthDay = (yyyymmdd: string): string => {
+export const DateToMonthDay = (yyyymmdd: string): string => {
   if (yyyymmdd.length !== 8) return yyyymmdd;
 
   const month = parseInt(yyyymmdd.slice(4, 6), 10);
