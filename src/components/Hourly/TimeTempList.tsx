@@ -7,7 +7,7 @@ const TimeTempList: React.FC = () => {
   return (
     <div className='time-temp-list'>
       {hourlyData.map((h) => (
-        <TimeTemp key={h.time} />
+        <TimeTemp timeTemp={h} key={h.time} />
       ))}
     </div>
   );
