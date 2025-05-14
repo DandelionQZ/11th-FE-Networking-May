@@ -2,7 +2,7 @@ import React from 'react';
 import HalfDay from './HalfDay';
 import './AllDay.css';
 import type { weeklyDay } from '../../types';
-import { formatDateToMonthDay } from '../../utils/formatDateToMonthDay';
+import { DateToMonthDay } from '../../utils/formatDate';
 
 interface AllDayProps {
   day: weeklyDay;
@@ -17,9 +17,7 @@ const AllDay: React.FC<AllDayProps> = ({ day }) => {
       </div>
       <div className='day-and-date'>
         <div className='day-and-date day'>오늘</div>
-        <div className='day-and-date date'>
-          {formatDateToMonthDay(day.yyyymmdd)}
-        </div>
+        <div className='day-and-date date'>{DateToMonthDay(day.yyyymmdd)}</div>
       </div>
     </div>
   );
