@@ -10,7 +10,7 @@ const WeeklyWeather: React.FC = () => {
 
       <div className='weekly-weather-content'>
         {weeklyData.map((day) => (
-          <AllDay key={day.yyyymmdd} />
+          <AllDay day={day} key={day.yyyymmdd} />
         ))}
       </div>
     </div>
