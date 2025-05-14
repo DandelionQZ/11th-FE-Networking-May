@@ -12,8 +12,18 @@ const AllDay: React.FC<AllDayProps> = ({ day }) => {
   return (
     <div className='all-day'>
       <div className='half-day-set'>
-        <HalfDay rain={day.dayRainPer} temp={day.dayTemperature} />
-        <HalfDay rain={day.nightRainPer} temp={day.nightTepmerature} />
+        <HalfDay
+          rain={day.dayRainPer}
+          temp={day.dayTemperature}
+          m='오전'
+          c='#32A1FF'
+        />
+        <HalfDay
+          rain={day.nightRainPer}
+          temp={day.nightTepmerature}
+          m='오후'
+          c='#FF3232'
+        />
       </div>
       <div className='day-and-date'>
         <div className='day-and-date day'>오늘</div>
