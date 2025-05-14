@@ -1,0 +1,11 @@
+.main-page {
+  display: flex;
+  width: 1920px;
+  height: 1200px;
+  padding-left: 248px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  background: #f6f6f6;
+}
