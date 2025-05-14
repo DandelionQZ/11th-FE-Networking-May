@@ -2,11 +2,12 @@ import React from 'react';
 import './HourlyWeather.css';
 import TimeTempList from './TimeTempList';
 import HourlyGraph from './HourlyGraph';
+import ContentTitle from '../ContentTitle';
 
 const HourlyWeather: React.FC = () => {
   return (
     <div className='hourly-weather'>
-      {/* ContentTitle 컴포넌트 추가 */}
+      <ContentTitle text='시간별 현황' />
 
       <div className='hourly-graph'>
         <HourlyGraph />
