@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentTitle from '../ContentTitle';
-import clouds from '../assets/Clouds.svg';
+import NightClouds from '../assets/NightClouds.svg';
 import './WeatherMain.css';
 import DetailInfo from './DetailInfo';
 
@@ -12,7 +12,7 @@ const WeatherMain: React.FC = () => {
       {/* 날씨 현황 */}
       <div className='weather-main-current'>
         <div className='current-1st'>
-          <img src={clouds} alt='clouds' />
+          <img src={NightClouds} alt='NightClouds' />
           <div>12.2º</div>
         </div>
         <div className='current-2nd'>야간 / 흐림</div>
