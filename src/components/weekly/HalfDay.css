@@ -31,7 +31,7 @@
   line-height: normal;
 }
 .half-day .half-day-temp {
-  color: var(--color-blue, #32a1ff);
+  color: #32a1ff;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
