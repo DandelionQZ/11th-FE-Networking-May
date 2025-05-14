@@ -1,11 +1,11 @@
 import React from 'react';
-import dayClouds from '../../assets/dayClouds.svg';
-import './NoLocation.css';
+import DayClouds from '../../assets/DayClouds.svg';
+import './LocationEmpty.css';
 
 const LocationEmpty: React.FC = () => {
   return (
     <div className='no-location-container'>
-      <img className='no-location-image' src={dayClouds} alt='dayClouds' />
+      <img className='no-location-image' src={DayClouds} alt='DayClouds' />
       <div className='no-location-text'>아직 선택된 위치가 없습니다!</div>
     </div>
   );
