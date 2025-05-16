@@ -13,8 +13,12 @@
 .sign-input img {
   width: 36px;
 }
-
-.sign-input-text {
+.sign-input input {
+  flex: 1;
   font-size: 18px;
   color: #000000;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  letter-spacing: 2px;
 }
