@@ -2,7 +2,11 @@ import React from 'react';
 import './SignForm.css';
 import SignInput from './SignInput';
 
-const SignForm: React.FC = () => {
+interface SignFormProps {
+  buttonText: string;
+}
+
+const SignForm: React.FC<SignFormProps> = ({ buttonText }) => {
   return (
     <form className='sign-form' action=''>
       <div className='sign-input-set'>
@@ -13,7 +17,7 @@ const SignForm: React.FC = () => {
           placeholder='Enter your password'
         />
       </div>
-      <input className='sign-form-btn' type='button' value='Sign Up' />
+      <input className='sign-form-btn' type='button' value={buttonText} />
     </form>
   );
 };

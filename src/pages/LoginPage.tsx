@@ -7,7 +7,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className='login-page'>
       <img src={LogoCloud} alt='LogoCloud' />
-      <SignForm />
+      <SignForm buttonText='Login' />
     </div>
   );
 };
