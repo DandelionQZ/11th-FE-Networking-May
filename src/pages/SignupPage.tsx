@@ -7,7 +7,7 @@ const SignupPage: React.FC = () => {
   return (
     <div className='signup-page'>
       <img src={LogoCloud} alt='LogoCloud' />
-      <SignForm />
+      <SignForm buttonText='Sign Up' />
     </div>
   );
 };
