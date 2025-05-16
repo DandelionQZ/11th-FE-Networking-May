@@ -7,6 +7,9 @@
   align-items: flex-start;
   gap: 40px;
   aspect-ratio: 31/150;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 
 .sidebar-title {

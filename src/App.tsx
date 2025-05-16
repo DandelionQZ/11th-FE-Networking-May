@@ -1,11 +1,13 @@
+
+import './App.css';
+import MainPage from './pages/MainPage';
 import Sidebar from './Sidebar';
 
 function App() {
   return (
-    <div className="app">
-      <Sidebar />
-      <main className="main-content">
-      </main>
+    <div>
+    <Sidebar/>
+      <MainPage />
     </div>
   );
 }
