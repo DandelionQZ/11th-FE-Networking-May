@@ -1,10 +1,10 @@
 import React from 'react';
 import ContentTitle from '../ContentTitle';
-import NightClouds from '../assets/NightClouds.svg';
-import './WeatherMain.css';
+import NightClouds from '../../assets/NightClouds.svg';
+import './MainWeather.css';
 import DetailInfo from './DetailInfo';
 
-const WeatherMain: React.FC = () => {
+const MainWeather: React.FC = () => {
   return (
     <div className='weather-main-container'>
       <ContentTitle text='4월 26일 롯데월드 날씨 현황' />
@@ -42,4 +42,4 @@ const WeatherMain: React.FC = () => {
   );
 };
 
-export default WeatherMain;
+export default MainWeather;
