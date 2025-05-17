@@ -1,0 +1,63 @@
+.location-pin-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 12px;
+  border-radius: 12px;
+  background-color: transparent;
+
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.location-pin-text.selected {
+  background-color: #f2f2f2;
+}
+
+.pin-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.pin-icon {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1/1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.pin-text {
+  overflow: hidden;
+  color: var(--color-gray-60, #292e2e);
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.pin-trash {
+  position: absolute;
+  top: 8px;
+  right: 1px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  width: 24px;
+  height: 24px;
+}
+
+.location-pin-wrapper:hover .pin-trash {
+  opacity: 1;
+}
+
+.location-pin-wrapper:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
