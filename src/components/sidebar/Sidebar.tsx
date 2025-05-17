@@ -1,7 +1,7 @@
 import './Sidebar.css';
 import AddButton from './AddButton'; 
 import LocationList from './LocationList';
-import mapPin from './assets/map-pin-front-color.png';
+import mapPin from '../../assets/map-pin-front-color.png';
 
 function Sidebar() {
   return (

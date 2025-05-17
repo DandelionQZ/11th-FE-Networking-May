@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import plusIcon from './assets/plus-front-clay.png';
+import plusIcon from '../../assets/pin-front-clay.png';
 import './AddButton.css';
 
 function AddButton() {

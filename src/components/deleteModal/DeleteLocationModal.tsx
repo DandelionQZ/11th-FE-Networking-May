@@ -1,5 +1,5 @@
 import './DeleteLocationModal.css';
-import nightStorm from './assets/Night Storm.png';
+import nightStorm from '../../assets/Night Storm.png';
 
 
 interface DeleteConfirmModalProps {

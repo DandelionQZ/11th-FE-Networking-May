@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import LocationPin from './LocationPin';
 import './LocationList.css';
-import DeleteLocationModal from './DeleteLocationModal';
+import LocationPin from './LocationPin';
+import DeleteLocationModal from '../deleteModal/DeleteLocationModal';
 
 interface Location {
   id: string;
