@@ -1,24 +1,16 @@
 .sidebar {
   display: flex;
   width: 248px;
-  height: 1200px;
+  height: 100vh;
   padding: 48px 16px;
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
   aspect-ratio: 31/150;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-
-.sidebar-title {
-  color: var(--color-gray-60, #292e2e);
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  position: absolute;
+  border-radius: 0px 48px 48px 0px;
+  background: #fff;
+  box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-link {
