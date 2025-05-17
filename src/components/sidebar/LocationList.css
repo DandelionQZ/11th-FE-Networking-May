@@ -1,23 +1,26 @@
-
 .location-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;              
-    flex: 1;               
-    overflow-y: auto;       
-    padding-right: 4px;     
-  }
-  
-  .location-list::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .location-list::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-  }
-  
-  .location-list::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  /* flex: 1; */
+  overflow-y: auto;
+  padding-right: 4px;
+  padding: 0px 8px;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+
+  padding-bottom: 8px;
+}
+
+.location-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.location-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.location-list::-webkit-scrollbar-track {
+  background: transparent;
+}
