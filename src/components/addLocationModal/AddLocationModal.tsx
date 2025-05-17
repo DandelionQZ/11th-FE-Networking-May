@@ -19,7 +19,7 @@ function AddLocationModal() {
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
 
-  const KAKAO_API_KEY = 'a0725f82bdf6500af25bcfda34faa2d8';
+  const KAKAO_API_KEY = 'the api kakao key= 필요하시면 저에게 카톡주세요';
 
   const handleSearch = async () => {
     try {
