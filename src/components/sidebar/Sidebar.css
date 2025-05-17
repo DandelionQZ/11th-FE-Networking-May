@@ -7,7 +7,7 @@
   align-items: flex-start;
   gap: 40px;
   aspect-ratio: 31/150;
-  position: absolute;
+  position: fixed;
   border-radius: 0px 48px 48px 0px;
   background: #fff;
   box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.1);
