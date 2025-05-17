@@ -17,7 +17,9 @@ const SignForm: React.FC<SignFormProps> = ({ buttonText }) => {
           placeholder='Enter your password'
         />
       </div>
-      <input className='sign-form-btn' type='button' value={buttonText} />
+      <button className='sign-form-btn' type='submit'>
+        {buttonText}
+      </button>
     </form>
   );
 };
