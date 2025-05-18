@@ -8,7 +8,7 @@ interface SignFormProps {
 
 const SignForm: React.FC<SignFormProps> = ({ buttonText }) => {
   return (
-    <form className='sign-form' action=''>
+    <form className='sign-form' action='/'>
       <div className='sign-input-set'>
         <SignInput type='email' name='email' placeholder='Enter your email' />
         <SignInput
