@@ -7,7 +7,6 @@
 .sign-input-set {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 16px;
 }
 .sign-form-btn {
@@ -18,4 +17,8 @@
   border-radius: 12px;
   font-size: 22px;
   color: #fff;
+}
+.sign-form-btn:hover {
+  border: 3px solid #ff8f8f;
+  box-shadow: -5px -5px 10px 3px #ff8f8f80 inset;
 }

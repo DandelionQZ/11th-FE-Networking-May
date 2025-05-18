@@ -10,7 +10,9 @@ const LoginPage: React.FC = () => {
     <div className='login-page'>
       <img src={LogoCloud} alt='LogoCloud' />
       <SignForm buttonText='Login' />
-      <button onClick={() => navigator('/signup')}>Switch to Signup</button>
+      <p onClick={() => navigator('/signup')}>
+        Switch to <span>Signup</span>
+      </p>
     </div>
   );
 };
