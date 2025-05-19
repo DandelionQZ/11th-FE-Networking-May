@@ -43,7 +43,6 @@
 }
 
 .pin-trash {
-  position: absolute;
   top: 8px;
   right: 1px;
   cursor: pointer;

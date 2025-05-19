@@ -15,9 +15,9 @@ interface Place {
 }
 interface AddLocationModalProps {
   onClose: () => void;
+  onSelectPlace: (place: { id: string; place_name: string }) => void;
 }
-
-function AddLocationModal({ onClose }: AddLocationModalProps) {
+function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
   const [keyword, setKeyword] = useState('');
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
@@ -43,7 +43,7 @@ function AddLocationModal({ onClose }: AddLocationModalProps) {
   const handleConfirm = () => {
     const selected = places.find((place) => place.id === selectedPlaceId);
     if (selected) {
-      onClose();
+      onSelectPlace(selected);
     } else {
       alert('장소를 선택해주세요!');
     }

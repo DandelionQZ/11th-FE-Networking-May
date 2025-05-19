@@ -1,15 +1,15 @@
-import './Sidebar.css';
-import mapPin from '../../assets/map-pin-front-color.png';
+import { useState } from 'react';
 import AddButton from './AddButton';
 import LocationList from './LocationList';
-import { useState } from 'react';
+import './Sidebar.css';
+import mapPin from '../../assets/map-pin-front-color.png';
 
 export interface Location {
   id: string;
   name: string;
 }
 
-function Sidebar() {
+function LocationManager() {
   const [locations, setLocations] = useState<Location[]>([]);
 
   return (
@@ -27,5 +27,4 @@ function Sidebar() {
     </div>
   );
 }
-
-export default Sidebar;
+export default LocationManager;
