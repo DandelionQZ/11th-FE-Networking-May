@@ -13,13 +13,16 @@ interface Place {
   x: string; // 경도
   y: string; // 위도
 }
+interface AddLocationModalProps {
+  onClose: () => void;
+}
 
-function AddLocationModal() {
+function AddLocationModal({ onClose }: AddLocationModalProps) {
   const [keyword, setKeyword] = useState('');
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
 
-  const KAKAO_API_KEY = 'the api kakao key= 필요하시면 저에게 카톡주세요';
+  const KAKAO_API_KEY = '';
 
   const handleSearch = async () => {
     try {
@@ -40,8 +43,7 @@ function AddLocationModal() {
   const handleConfirm = () => {
     const selected = places.find((place) => place.id === selectedPlaceId);
     if (selected) {
-      console.log('선택된 장소:', selected);
-      // 선택된 장소 받아오면 어떻게 할지 이제 구현.......
+      onClose();
     } else {
       alert('장소를 선택해주세요!');
     }
@@ -50,7 +52,12 @@ function AddLocationModal() {
   return (
     <div className='addlo-overlay'>
       <div className='addlo-content'>
-        <img src={exitIcon} className='addlo-exit-button' />
+        <img
+          src={exitIcon}
+          className='addlo-exit-button'
+          onClick={onClose}
+          style={{ cursor: 'pointer' }}
+        />
         <div className='addlo-header'>
           <img className='addlo-header-icon' src={cloudsIcon} />
           <p className='addlo-header-title'>날씨 위치 추가</p>
