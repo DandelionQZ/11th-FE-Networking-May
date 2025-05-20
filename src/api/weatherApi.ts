@@ -1,5 +1,18 @@
 import type { TodayWeatherInterface } from '../interface';
 
+export const getTodayWeather = async (lat: number, lon: number) => {
+  const params = {
+    lat: lat,
+    lon: lon,
+  };
+
+  console.log('params: ', params);
+
+  await new Promise((response) => setTimeout(response, 500));
+
+  return mockTodayWeatherData;
+};
+
 const mockTodayWeatherData: TodayWeatherInterface = {
   current: {
     datetime: '2025-05-18 21:36',
