@@ -84,6 +84,7 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
 
         <div className='addlo-list-container'>
           {places.map((place) => (
+            // todo : 밑의 장소이름과 주소 담는 div 태그를 컴포넌트화 하기
             <div
               key={place.id}
               className={`addlo-list-item ${
