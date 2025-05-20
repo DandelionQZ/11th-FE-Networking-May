@@ -22,15 +22,15 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
 
-  const KAKAO_API_KEY = '';
-
   const handleSearch = async () => {
     try {
       const res = await axios.get(
         'https://dapi.kakao.com/v2/local/search/keyword.json',
         {
           params: { query: keyword },
-          headers: { Authorization: `KakaoAK ${KAKAO_API_KEY}` },
+          headers: {
+            Authorization: `KakaoAK ${import.meta.env.VITE_KAKAO_API_KEY}`,
+          },
         }
       );
       setPlaces(res.data.documents);
