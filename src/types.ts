@@ -10,3 +10,33 @@ export type weeklyDay = {
   dayRainPer: number;
   nightRainPer: number;
 };
+
+export type WeatherIconType = {
+  main: string;
+  icon: string;
+};
+
+export type WeatherCurrentType = {
+  datatime: string;
+  temperature: number;
+  feelsLike: number;
+  weather: WeatherIconType;
+  humiditiy: number;
+  windSpeed: number;
+  windDirection: string;
+  unIndex: string;
+  sunrise: string;
+};
+
+export type WeatherHourlyType = {
+  hour: string;
+  temperature: number;
+  icon: string;
+};
+
+export type WeatherDailyType = {
+  date: string;
+  morningTemp: number;
+  afternoonTemp: number;
+  weather: WeatherIconType;
+};
