@@ -9,7 +9,10 @@ interface LocationListProps {
   setLocations: React.Dispatch<React.SetStateAction<Location[]>>;
 }
 
-
+const LocationList: React.FC<LocationListProps> = ({
+  locations,
+  setLocations,
+}) => {
   const [pendingDeleteLocation, setPendingDeleteLocation] = useState<
     string | null
   >(null);
@@ -23,7 +26,6 @@ interface LocationListProps {
     setSelectedIds((prev) => prev.filter((id) => id !== pendingDeleteLocation));
     setPendingDeleteLocation(null);
   };
-
 
   const handleImageClick = (id: string) => {
     const isSelected = selectedIds.includes(id);
@@ -68,6 +70,6 @@ interface LocationListProps {
       )}
     </div>
   );
-}
+};
 
 export default LocationList;

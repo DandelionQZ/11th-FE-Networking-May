@@ -11,6 +11,11 @@
   top: 0px;
   left: 0px;
   background-color: white;
+  z-index: 1000;
+
+  border-radius: 0px 48px 48px 0px;
+  background: var(--color-gray-0, #fff);
+  box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-title {
