@@ -1,14 +1,29 @@
 import React from 'react';
 import './SignForm.css';
 import SignInput from './SignInput';
+import { useUserStore } from '../../store/userStore';
+import { useShallow } from 'zustand/shallow';
 
 interface SignFormProps {
   buttonText: string;
 }
 
 const SignForm: React.FC<SignFormProps> = ({ buttonText }) => {
+  const { email, password } = useUserStore(
+    useShallow((state) => ({
+      email: state.email,
+      password: state.password,
+    }))
+  );
+
+  const onHandleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('email: ', email);
+    console.log('password: ', password);
+  };
+
   return (
-    <form className='sign-form' action='/'>
+    <form className='sign-form' onSubmit={onHandleSubmit}>
       <div className='sign-input-set'>
         <SignInput name='email' placeholder='Enter your email' />
         <SignInput name='password' placeholder='Enter your password' />
