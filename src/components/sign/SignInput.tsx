@@ -11,10 +11,8 @@ interface SignInputProps {
 }
 
 const SignInput: React.FC<SignInputProps> = ({ name, placeholder }) => {
-  const { email, password, setEmail, setPassword } = useUserStore(
+  const { setEmail, setPassword } = useUserStore(
     useShallow((state) => ({
-      email: state.email,
-      password: state.password,
       setEmail: state.setEmail,
       setPassword: state.setPassword,
     }))
@@ -40,7 +38,6 @@ const SignInput: React.FC<SignInputProps> = ({ name, placeholder }) => {
         name={name}
         placeholder={placeholder}
       />
-      {email} and {password}
     </div>
   );
 };
