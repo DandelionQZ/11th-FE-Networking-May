@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  width: 160px;
   padding: 8px;
   flex: 1 0 0;
   gap: 12px;
@@ -51,6 +52,8 @@
 }
 
 .pin-trash {
+  top: 8px;
+  right: 1px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s ease;

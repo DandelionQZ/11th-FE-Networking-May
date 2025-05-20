@@ -1,14 +1,15 @@
-import { useState } from 'react';
 import './LocationList.css';
 import LocationPin from './LocationPin';
 import DeleteLocationModal from '../deleteModal/DeleteLocationModal';
+import { useState } from 'react';
+import type { Location } from './LocationManager';
 
-interface Location {
-  id: string;
-  name: string;
+interface LocationListProps {
+  locations: Location[];
+  setLocations: React.Dispatch<React.SetStateAction<Location[]>>;
 }
 
-function LocationList() {
+
   const [pendingDeleteLocation, setPendingDeleteLocation] = useState<
     string | null
   >(null);
@@ -23,15 +24,6 @@ function LocationList() {
     setPendingDeleteLocation(null);
   };
 
-  const [locations, setLocations] = useState<Location[]>([
-    { id: 'gangnam', name: '강남역 1번 출구' },
-    { id: 'ratthat', name: 'RATTHAT' },
-    { id: 'pi', name: '파이홀' },
-    { id: 'cheong', name: '청수당공명' },
-    { id: 'lotte', name: '롯데월드' },
-    { id: 'gugan', name: '구관' },
-    { id: 'osiu', name: 'Osiu' },
-  ]);
 
   const handleImageClick = (id: string) => {
     const isSelected = selectedIds.includes(id);
