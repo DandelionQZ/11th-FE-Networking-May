@@ -1,4 +1,6 @@
-const mockTodayWeatherData = {
+import type { TodayWeatherInterface } from '../interface';
+
+const mockTodayWeatherData: TodayWeatherInterface = {
   current: {
     datetime: '2025-05-18 21:36',
     temperature: 14.8,

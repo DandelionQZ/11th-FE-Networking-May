@@ -17,14 +17,14 @@ export type WeatherIconType = {
 };
 
 export type WeatherCurrentType = {
-  datatime: string;
+  datetime: string;
   temperature: number;
   feelsLike: number;
   weather: WeatherIconType;
-  humiditiy: number;
+  humidity: number;
   windSpeed: number;
   windDirection: string;
-  unIndex: string;
+  uvIndex: string;
   sunrise: string;
 };
 
