@@ -1,10 +1,11 @@
 .location-pin-wrapper {
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 8px 12px;
-  gap: 12px;
+  align-self: stretch;
+
   border-radius: 12px;
-  background-color: transparent;
+  background-color: var(--color-gray-10, transparent);
 
   position: relative;
   cursor: pointer;
@@ -18,9 +19,11 @@
 .pin-left {
   display: flex;
   align-items: center;
-  gap: 8px;
   cursor: pointer;
   width: 160px;
+  padding: 8px;
+  flex: 1 0 0;
+  gap: 12px;
 }
 
 .pin-icon {
@@ -41,6 +44,11 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex: 1 0 0;
 }
 
 .pin-trash {
@@ -60,4 +68,8 @@
 .location-pin-wrapper:hover {
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.1);
+
+  justify-content: center;
+  background: var(--color-gray-10, #f2f2f2);
+  box-shadow: -2px 2px 2px 1px rgba(0, 0, 0, 0.1);
 }

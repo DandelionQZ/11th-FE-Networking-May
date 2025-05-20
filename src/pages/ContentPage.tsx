@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import './MainPage.css';
+import './ContentPage.css';
 import MainWeather from '../components/main/MainWeather';
 import HourlyWeather from '../components/hourly/HourlyWeather';
 import WeeklyWeather from '../components/weekly/WeeklyWeather';
 import LocationEmpty from '../components/main/LocationEmpty';
 
-const MainPage: React.FC = () => {
+const ContentPage: React.FC = () => {
   const [isSelected] = useState<boolean>(true);
 
   const display = () => {
@@ -24,4 +24,4 @@ const MainPage: React.FC = () => {
   return <div className='main-page'>{display()}</div>;
 };
 
-export default MainPage;
+export default ContentPage;
