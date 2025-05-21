@@ -15,12 +15,19 @@ interface Place {
 }
 interface AddLocationModalProps {
   onClose: () => void;
-  onSelectPlace: (place: { id: string; place_name: string }) => void;
+  onSelectPlace: (place: {
+    id: string;
+    place_name: string;
+    x: string;
+    y: string;
+  }) => void;
 }
+
 function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
   const [keyword, setKeyword] = useState('');
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async () => {
     try {
@@ -46,13 +53,26 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
       alert('장소를 선택해주세요!');
       return;
     }
+    if (selected.place_name.length < 2 || selected.place_name.length > 10) {
+      alert('장소 이름은 2~10자여야 합니다.');
+      return;
+    }
+
+    const lat = parseFloat(selected.y);
+    const lng = parseFloat(selected.x);
+
+    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+      alert('위도 또는 경도 값이 유효하지 않습니다.');
+      return;
+    }
 
     const body = {
       locationName: selected.place_name,
-      latitude: parseFloat(selected.y), // 위도
-      longitude: parseFloat(selected.x), // 경도
+      latitude: lat,
+      longitude: lng,
     };
 
+    setIsLoading(true);
     try {
       const response = await axios.post(
         'http://15.164.233.124:8080/locations',
@@ -61,18 +81,22 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
 
       if (response.data.isSuccess) {
         alert('위치가 성공적으로 추가되었습니다!');
-        onSelectPlace(selected); // 상태 갱신
-        onClose(); // 모달 닫기
+        onSelectPlace(selected);
+        onClose();
       } else {
         alert('위치 추가에 실패했습니다.');
       }
     } catch (error: any) {
-      if (error.response?.data?.message) {
-        alert('에러: ' + error.response.data.message);
+      if (
+        error.response?.data?.message === 'LOCATION_NAME_DUPLICATED_EXCEPTION'
+      ) {
+        alert('이미 등록된 이름입니다.');
       } else {
         alert('위치 추가 중 오류가 발생했습니다.');
       }
       console.error('위치 추가 에러:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -111,7 +135,6 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
 
         <div className='addlo-list-container'>
           {places.map((place) => (
-            // todo : 밑의 장소이름과 주소 담는 div 태그를 컴포넌트화 하기
             <div
               key={place.id}
               className={`addlo-list-item ${
@@ -130,8 +153,13 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
         </div>
 
         <div className='addlo-footer'>
-          <button className='addlo-confirm-button' onClick={handleConfirm}>
-            <span className='addlo-confirm-button-text'>확인</span>
+          <button
+            className='addlo-confirm-button'
+            onClick={handleConfirm}
+            disabled={isLoading}>
+            <span className='addlo-confirm-button-text'>
+              {isLoading ? '등록 중...' : '확인'}
+            </span>
           </button>
         </div>
       </div>

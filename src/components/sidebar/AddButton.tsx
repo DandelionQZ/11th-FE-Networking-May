@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import plusIcon from '../../assets/plus-front-clay.png';
 import AddLocationModal from '../addLocationModal/AddLocationModal';
 import './AddButton.css';
-import type { Location } from './LocationManager';
+import axios from 'axios';
 
 interface AddButtonProps {
-  setLocations: React.Dispatch<React.SetStateAction<Location[]>>;
+  onAddSuccess: () => void;
 }
 
-function AddButton({ setLocations }: AddButtonProps) {
+function AddButton({ onAddSuccess }: AddButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = (e: React.MouseEvent) => {
@@ -20,12 +20,25 @@ function AddButton({ setLocations }: AddButtonProps) {
     setIsModalOpen(false);
   };
 
-  const handleSelectPlace = (place: { id: string; place_name: string }) => {
-    setLocations((prev) => {
-      if (prev.some((loc) => loc.id === place.id)) return prev;
-      return [...prev, { id: place.id, name: place.place_name }];
-    });
-    handleCloseModal();
+  const handleSelectPlace = async (place: {
+    id: string;
+    place_name: string;
+    x: string;
+    y: string;
+  }) => {
+    try {
+      await axios.post('http://15.164.233.124:8080/locations', {
+        locationName: place.place_name,
+        latitude: parseFloat(place.y),
+        longitude: parseFloat(place.x),
+      });
+
+      onAddSuccess(); // 서버에서 목록 새로고침
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('위치 추가 실패:', error);
+      alert('위치 추가에 실패했습니다.');
+    }
   };
 
   return (
