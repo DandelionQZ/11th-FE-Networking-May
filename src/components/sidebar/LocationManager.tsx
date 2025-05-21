@@ -44,7 +44,7 @@ function LocationManager() {
       </div>
 
       <AddButton onAddSuccess={fetchLocations} />
-      <LocationList locations={locations} setLocations={setLocations} />
+      <LocationList locations={locations} />
     </div>
   );
 }
