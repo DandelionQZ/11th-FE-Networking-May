@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ContentPage.css';
 import MainWeather from '../components/main/MainWeather';
 import HourlyWeather from '../components/hourly/HourlyWeather';
@@ -13,31 +13,26 @@ const ContentPage: React.FC = () => {
   const lat = 100;
   const lon = 999;
 
-  const { current, hourly, daily, setCurrent, setHourly, setDaily } =
-    useWeatherStore(
-      useShallow((state) => ({
-        setCurrent: state.setCurrent,
-        setHourly: state.setHourly,
-        setDaily: state.setDaily,
-        current: state.current,
-        hourly: state.hourly,
-        daily: state.daily,
-      }))
-    );
+  const { setCurrent, setHourly, setDaily } = useWeatherStore(
+    useShallow((state) => ({
+      setCurrent: state.setCurrent,
+      setHourly: state.setHourly,
+      setDaily: state.setDaily,
+    }))
+  );
 
   const { data, error } = useQuery({
     queryKey: ['todayWeather'],
     queryFn: () => getTodayWeather(lat, lon),
   });
 
-  if (data) {
-    setCurrent(data.current);
-    setHourly(data.hourly);
-    setDaily(data.daily);
-    console.log('current: ', current);
-    console.log('hourly: ', hourly);
-    console.log('daily: ', daily);
-  }
+  useEffect(() => {
+    if (data) {
+      setCurrent(data.current);
+      setHourly(data.hourly);
+      setDaily(data.daily);
+    }
+  }, [data, setCurrent, setHourly, setDaily]);
 
   if (error) {
     console.log('getTodayWeather api 호출 에러: ', error);
