@@ -1,4 +1,4 @@
-import { axiosInstance } from './axios';
+import { publicAxios } from './axios';
 import { ENDPOINT } from './urls';
 
 export const postSignup = async (email: string, password: string) => {
@@ -7,16 +7,16 @@ export const postSignup = async (email: string, password: string) => {
     password: password,
   };
 
-  console.log('data: ', data);
+  console.log('회원가입 data: ', data);
 
-  axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
+  publicAxios.defaults.headers.common['Content-Type'] = 'application/json';
 
-  await axiosInstance
+  await publicAxios
     .post(ENDPOINT.AUTH_SIGNUP, data)
     .then((res) => {
-      console.log('성공: ', res);
+      console.log('회원가입 성공: ', res);
     })
     .catch((err) => {
-      console.log('요청 실패: ', err);
+      console.log('회원가입 요청 실패: ', err);
     });
 };

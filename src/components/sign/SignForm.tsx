@@ -3,6 +3,7 @@ import './SignForm.css';
 import SignInput from './SignInput';
 import { useUserStore } from '../../store/userStore';
 import { useShallow } from 'zustand/shallow';
+import { postSignup } from '../../apis/user';
 
 interface SignFormProps {
   buttonText: string;
@@ -18,8 +19,7 @@ const SignForm: React.FC<SignFormProps> = ({ buttonText }) => {
 
   const onHandleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('email: ', email);
-    console.log('password: ', password);
+    postSignup(email, password);
   };
 
   return (
