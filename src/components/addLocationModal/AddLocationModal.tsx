@@ -40,12 +40,39 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
     }
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     const selected = places.find((place) => place.id === selectedPlaceId);
-    if (selected) {
-      onSelectPlace(selected);
-    } else {
+    if (!selected) {
       alert('장소를 선택해주세요!');
+      return;
+    }
+
+    const body = {
+      locationName: selected.place_name,
+      latitude: parseFloat(selected.y), // 위도
+      longitude: parseFloat(selected.x), // 경도
+    };
+
+    try {
+      const response = await axios.post(
+        'http://15.164.233.124:8080/locations',
+        body
+      );
+
+      if (response.data.isSuccess) {
+        alert('위치가 성공적으로 추가되었습니다!');
+        onSelectPlace(selected); // 상태 갱신
+        onClose(); // 모달 닫기
+      } else {
+        alert('위치 추가에 실패했습니다.');
+      }
+    } catch (error: any) {
+      if (error.response?.data?.message) {
+        alert('에러: ' + error.response.data.message);
+      } else {
+        alert('위치 추가 중 오류가 발생했습니다.');
+      }
+      console.error('위치 추가 에러:', error);
     }
   };
 
