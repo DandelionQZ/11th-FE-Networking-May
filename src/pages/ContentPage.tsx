@@ -6,22 +6,41 @@ import WeeklyWeather from '../components/weekly/WeeklyWeather';
 import LocationEmpty from '../components/main/LocationEmpty';
 import { getTodayWeather } from '../api/weatherApi';
 import { useQuery } from '@tanstack/react-query';
+import { useWeatherStore } from '../store/weatherStore';
+import { useShallow } from 'zustand/shallow';
 
 const ContentPage: React.FC = () => {
   const lat = 100;
   const lon = 999;
 
-  const { data, error, isSuccess } = useQuery({
+  const { current, hourly, daily, setCurrent, setHourly, setDaily } =
+    useWeatherStore(
+      useShallow((state) => ({
+        setCurrent: state.setCurrent,
+        setHourly: state.setHourly,
+        setDaily: state.setDaily,
+        current: state.current,
+        hourly: state.hourly,
+        daily: state.daily,
+      }))
+    );
+
+  const { data, error } = useQuery({
     queryKey: ['todayWeather'],
     queryFn: () => getTodayWeather(lat, lon),
   });
 
-  if (isSuccess) {
-    console.log('tanstack query todayWeather: ', data);
+  if (data) {
+    setCurrent(data.current);
+    setHourly(data.hourly);
+    setDaily(data.daily);
+    console.log('current: ', current);
+    console.log('hourly: ', hourly);
+    console.log('daily: ', daily);
   }
 
   if (error) {
-    console.log('error: ', error);
+    console.log('getTodayWeather api 호출 에러: ', error);
   }
 
   const [isSelected] = useState<boolean>(true);
