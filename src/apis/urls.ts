@@ -13,4 +13,7 @@ export const ENDPOINT = {
 
   // station
   STATION_NEAR: '/api/station',
+
+  // dust
+  DUST_TODAY: '/api/dust',
 };
