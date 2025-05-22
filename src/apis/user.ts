@@ -23,3 +23,8 @@ export const postLogin = async (email: string, password: string) => {
   const response = await publicAxios.post(ENDPOINT.AUTH_LOGIN, data);
   return response.data;
 };
+
+export const postLogout = async () => {
+  const response = await publicAxios.post(ENDPOINT.AUTH_LOGOUT);
+  return response;
+};
