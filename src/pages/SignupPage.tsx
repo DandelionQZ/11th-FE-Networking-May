@@ -17,9 +17,16 @@ const SignupPage: React.FC = () => {
       clear: state.clear,
     }))
   );
+
   const onHandleSubmit = async () => {
+    if (password.length < 8) {
+      alert('비밀번호는 8자리 이상이어야 합니다');
+      return;
+    }
+
     try {
       await postSignup(email, password);
+      alert('회원가입 성공');
       clear();
       navigate('/login');
     } catch (err) {
@@ -27,12 +34,12 @@ const SignupPage: React.FC = () => {
       console.log('회원가입 실패 err:', err);
     }
   };
-  const navigator = useNavigate();
+
   return (
     <div className='signup-page'>
       <img src={LogoCloud} alt='LogoCloud' />
       <SignForm buttonText='Sign Up' onSubmitFn={onHandleSubmit} />
-      <p onClick={() => navigator('/login')}>
+      <p onClick={() => navigate('/login')}>
         Switch to <span>Login</span>
       </p>
     </div>
