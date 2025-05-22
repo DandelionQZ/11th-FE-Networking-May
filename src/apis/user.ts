@@ -7,16 +7,7 @@ export const postSignup = async (email: string, password: string) => {
     password: password,
   };
 
-  console.log('회원가입 data: ', data);
-
   publicAxios.defaults.headers.common['Content-Type'] = 'application/json';
 
-  await publicAxios
-    .post(ENDPOINT.AUTH_SIGNUP, data)
-    .then((res) => {
-      console.log('회원가입 성공: ', res);
-    })
-    .catch((err) => {
-      console.log('회원가입 요청 실패: ', err);
-    });
+  await publicAxios.post(ENDPOINT.AUTH_SIGNUP, data);
 };
