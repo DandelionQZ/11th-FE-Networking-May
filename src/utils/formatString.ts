@@ -15,3 +15,7 @@ export const isNight = (code: string): boolean => {
 export const isDay = (code: string): boolean => {
   return code.endsWith('d');
 };
+
+export const getCityWord = (address: string): string => {
+  return address.substring(0, 2);
+};
