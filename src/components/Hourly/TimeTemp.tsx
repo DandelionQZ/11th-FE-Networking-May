@@ -1,7 +1,7 @@
 import React from 'react';
 import './TimeTemp.css';
 import type { WeatherHourlyType } from '../../types.ts';
-import { getWeatherIcon } from '../../utils/exchangeIcon.ts';
+import { getWeatherIcon } from '../../utils/formatIcon.ts';
 import { formatHour } from '../../utils/formatHour.ts';
 
 interface TimeTempProps {

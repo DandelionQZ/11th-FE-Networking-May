@@ -45,3 +45,11 @@ export const formatToShortDate = (dateString: string): string => {
   const month = String(parseInt(mm, 10)); // 앞자리 0 제거
   return `${month}.${dd}`;
 };
+
+export const formatDateToKorean = (dateString: string): string => {
+  // "2025-05-22 23:00" → "2025-05-22"
+  const [datePart] = dateString.split(' ');
+  const [year, month, day] = datePart.split('-').map(Number);
+
+  return `${month}월 ${day}일`;
+};
