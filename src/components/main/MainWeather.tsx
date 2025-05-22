@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use, useEffect } from 'react';
 import ContentTitle from '../ContentTitle';
 import './MainWeather.css';
 import DetailInfo from './DetailInfo';
@@ -6,13 +6,36 @@ import { useWeatherStore } from '../../store/weatherStore';
 import { useShallow } from 'zustand/shallow';
 import { getWeatherIcon, getWeatherStatus } from '../../utils/formatIcon';
 import { getDayOrNight } from '../../utils/formatString';
+import { getStation } from '../../apis/weather';
+import { useQuery } from '@tanstack/react-query';
 
 const MainWeather: React.FC = () => {
+  // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
+  const lat = 37;
+  const lon = 127;
+
   const { current } = useWeatherStore(
     useShallow((state) => ({
       current: state.current,
     }))
   );
+
+  const { data, error } = useQuery({
+    queryKey: ['station'],
+    queryFn: async () => {
+      const data = await getStation(lat, lon);
+      if (!data) throw new Error('No data received from station API');
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    console.log('station ::: ', data);
+  }, [data]);
+
+  if (error) {
+    console.log('getStation api 호출 에러: ', error);
+  }
 
   return (
     <div className='weather-main-container'>
