@@ -1,6 +1,9 @@
 import { create } from 'zustand';
 
 interface userState {
+  useId: string;
+  setUserId: (str: string) => void;
+
   email: string;
   setEmail: (str: string) => void;
 
@@ -11,6 +14,9 @@ interface userState {
 }
 
 export const useUserStore = create<userState>((set) => ({
+  useId: '',
+  setUserId: (str: string) => set({ useId: str }),
+
   email: '',
   setEmail: (str: string) => set({ email: str }),
 
