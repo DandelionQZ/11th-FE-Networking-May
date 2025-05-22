@@ -3,12 +3,19 @@ import ContentTitle from '../ContentTitle';
 import NightClouds from '../../assets/NightClouds.svg';
 import './MainWeather.css';
 import DetailInfo from './DetailInfo';
+import { useWeatherStore } from '../../store/weatherStore';
+import { useShallow } from 'zustand/shallow';
 
 const MainWeather: React.FC = () => {
+  const { current } = useWeatherStore(
+    useShallow((state) => ({
+      current: state.current,
+    }))
+  );
+
   return (
     <div className='weather-main-container'>
       <ContentTitle text='4월 26일 롯데월드 날씨 현황' />
-
       {/* 날씨 현황 */}
       <div className='weather-main-current'>
         <div className='current-1st'>
