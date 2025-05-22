@@ -45,13 +45,6 @@ export type WeatherDailyType = {
   weather: WeatherIconType;
 };
 
-export type stationType = {
-  stationName: string;
-  stationCode: string;
-  address: string;
-  distanceTm: number;
-};
-
 export type dustType = {
   stationName: string;
   dataTime: string;
