@@ -9,6 +9,7 @@ import { getDayOrNight } from '../../utils/formatString';
 import { getDust } from '../../apis/weather';
 import { useQuery } from '@tanstack/react-query';
 import { useDustStore } from '../../store/dustStore';
+import { getDustStatus } from '../../utils/dustGrade';
 
 const MainWeather: React.FC = () => {
   // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
@@ -78,8 +79,18 @@ const MainWeather: React.FC = () => {
 
       {/* 날씨 디테일 */}
       <div className='weather-main-detail'>
-        <DetailInfo type='미세먼지' value='좋음' bg='#cce8ff' txt='#32a1ff' />
-        <DetailInfo type='초미세먼지' value='보통' bg='#ceffcc' txt='#32ff35' />
+        <DetailInfo
+          type='미세먼지'
+          value={getDustStatus(dust.pm10Grade)}
+          bg='#cce8ff'
+          txt='#32a1ff'
+        />
+        <DetailInfo
+          type='초미세먼지'
+          value={getDustStatus(dust.pm25Grade)}
+          bg='#ceffcc'
+          txt='#32ff35'
+        />
         <DetailInfo
           type='자외선'
           value={current.uvIndex}
