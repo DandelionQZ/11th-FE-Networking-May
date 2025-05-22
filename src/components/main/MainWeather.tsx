@@ -10,6 +10,7 @@ import { getDust } from '../../apis/weather';
 import { useQuery } from '@tanstack/react-query';
 import { useDustStore } from '../../store/dustStore';
 import { getDustStatus } from '../../utils/dustGrade';
+import { formatDateToKorean } from '../../utils/formatDate';
 
 const MainWeather: React.FC = () => {
   // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
@@ -50,7 +51,10 @@ const MainWeather: React.FC = () => {
 
   return (
     <div className='weather-main-container'>
-      <ContentTitle text={current.datetime + ' 4월 26일 롯데월드 날씨 현황'} />
+      <ContentTitle
+        // todo : '롯데월드' 대신에 장소명 작성
+        text={formatDateToKorean(current.datetime) + ' 롯데월드' + ' 날씨 현황'}
+      />
       {/* 날씨 현황 */}
       <div className='weather-main-current'>
         <div className='current-1st'>
