@@ -10,6 +10,7 @@ import { useWeatherStore } from '../store/weatherStore';
 import { useShallow } from 'zustand/shallow';
 
 const ContentPage: React.FC = () => {
+  // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
   const lat = 37;
   const lon = 127;
 
