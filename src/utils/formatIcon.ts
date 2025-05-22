@@ -32,8 +32,24 @@ const iconMap: Record<string, string> = {
   '50n': NightWind, // 50은 안개인데, 안개 아이콘은 없고, 바람은 날씨에 없어서 안개에 바람 아이콘 부여..
 };
 
+const iconMain: Record<string, string> = {
+  Thunderstorm: '뇌우',
+  Drizzle: '이슬비',
+  Rain: '비',
+  Snow: '눈',
+  Atmosphere: '안개',
+  Clear: '맑음',
+  Clouds: '흐림',
+};
+
 export const getWeatherIcon = (iconLabel: string): string => {
   const iconString = iconMap[iconLabel];
+
+  return iconString;
+};
+
+export const getWeatherStatus = (iconLabelMain: string): string => {
+  const iconString = iconMain[iconLabelMain];
 
   return iconString;
 };
