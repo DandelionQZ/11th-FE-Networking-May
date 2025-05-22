@@ -1,17 +1,19 @@
 import { create } from 'zustand';
-import type { stationType } from '../types';
+import type { dustType } from '../types';
 
 interface DustState {
-  station: stationType;
-  setStation: (station: stationType) => void;
+  dust: dustType;
+  setDust: (dust: dustType) => void;
 }
 
 export const useDustStore = create<DustState>((set) => ({
-  station: {
+  dust: {
     stationName: '',
-    stationCode: '',
-    address: '',
-    distanceTm: 0,
+    dataTime: '',
+    pm10Value: '',
+    pm10Grade: '',
+    pm25Value: '',
+    pm25Grade: '',
   },
-  setStation: (station) => set({ station }),
+  setDust: (dust) => set({ dust }),
 }));
