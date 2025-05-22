@@ -44,3 +44,19 @@ export type WeatherDailyType = {
   afternoonTemp: number;
   weather: WeatherIconType;
 };
+
+export type stationType = {
+  stationName: string;
+  stationCode: string;
+  address: string;
+  distanceTm: number;
+};
+
+export type dustType = {
+  stationName: string;
+  dataTime: string;
+  pm10Value: string;
+  pm10Grade: string;
+  pm25Value: string;
+  pm25Grade: string;
+};
