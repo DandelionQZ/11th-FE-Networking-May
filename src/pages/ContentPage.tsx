@@ -4,14 +4,14 @@ import MainWeather from '../components/main/MainWeather';
 import HourlyWeather from '../components/hourly/HourlyWeather';
 import WeeklyWeather from '../components/weekly/WeeklyWeather';
 import LocationEmpty from '../components/main/LocationEmpty';
-import { getTodayWeather } from '../api/weatherApi';
+import { getTodayWeather } from '../apis/weather';
 import { useQuery } from '@tanstack/react-query';
 import { useWeatherStore } from '../store/weatherStore';
 import { useShallow } from 'zustand/shallow';
 
 const ContentPage: React.FC = () => {
-  const lat = 100;
-  const lon = 999;
+  const lat = 37;
+  const lon = 127;
 
   const { setCurrent, setHourly, setDaily } = useWeatherStore(
     useShallow((state) => ({
@@ -23,7 +23,11 @@ const ContentPage: React.FC = () => {
 
   const { data, error } = useQuery({
     queryKey: ['todayWeather'],
-    queryFn: () => getTodayWeather(lat, lon),
+    queryFn: async () => {
+      const data = await getTodayWeather(lat, lon);
+      if (!data) throw new Error('No data received from weather API');
+      return data;
+    },
   });
 
   useEffect(() => {

@@ -7,4 +7,7 @@ export const ENDPOINT = {
   AUTH_SIGNUP: '/auth/signup',
   AUTH_LOGIN: '/auth/login',
   AUTH_LOGOUT: '/auth/logout',
+
+  // weather
+  WEATHER_TODAY: '/api/weather',
 };

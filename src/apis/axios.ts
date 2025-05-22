@@ -4,3 +4,8 @@ import { BASE_URL } from './urls';
 export const publicAxios = axios.create({
   baseURL: BASE_URL,
 });
+
+export const authAxios = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
