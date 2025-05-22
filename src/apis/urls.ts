@@ -10,4 +10,7 @@ export const ENDPOINT = {
 
   // weather
   WEATHER_TODAY: '/api/weather',
+
+  // station
+  STATION_NEAR: '/api/station',
 };
