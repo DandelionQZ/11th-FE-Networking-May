@@ -8,6 +8,7 @@ import { getWeatherIcon, getWeatherStatus } from '../../utils/formatIcon';
 import { getDayOrNight } from '../../utils/formatString';
 import { getStation } from '../../apis/weather';
 import { useQuery } from '@tanstack/react-query';
+import { useDustStore } from '../../store/dustStore';
 
 const MainWeather: React.FC = () => {
   // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
@@ -17,6 +18,13 @@ const MainWeather: React.FC = () => {
   const { current } = useWeatherStore(
     useShallow((state) => ({
       current: state.current,
+    }))
+  );
+
+  const { station, setStation } = useDustStore(
+    useShallow((state) => ({
+      station: state.station,
+      setStation: state.setStation,
     }))
   );
 
@@ -30,8 +38,12 @@ const MainWeather: React.FC = () => {
   });
 
   useEffect(() => {
-    console.log('station ::: ', data);
-  }, [data]);
+    setStation(data);
+  }, [data, setStation]);
+
+  useEffect(() => {
+    console.log('station ::: ', station);
+  }, [station]);
 
   if (error) {
     console.log('getStation api 호출 에러: ', error);
