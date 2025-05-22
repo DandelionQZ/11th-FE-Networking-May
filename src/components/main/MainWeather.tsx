@@ -6,7 +6,7 @@ import { useWeatherStore } from '../../store/weatherStore';
 import { useShallow } from 'zustand/shallow';
 import { getWeatherIcon, getWeatherStatus } from '../../utils/formatIcon';
 import { getDayOrNight } from '../../utils/formatString';
-import { getStation } from '../../apis/weather';
+import { getDust } from '../../apis/weather';
 import { useQuery } from '@tanstack/react-query';
 import { useDustStore } from '../../store/dustStore';
 
@@ -21,32 +21,28 @@ const MainWeather: React.FC = () => {
     }))
   );
 
-  const { station, setStation } = useDustStore(
+  const { dust, setDust } = useDustStore(
     useShallow((state) => ({
-      station: state.station,
-      setStation: state.setStation,
+      dust: state.dust,
+      setDust: state.setDust,
     }))
   );
 
   const { data, error } = useQuery({
-    queryKey: ['station'],
+    queryKey: ['dust'],
     queryFn: async () => {
-      const data = await getStation(lat, lon);
-      if (!data) throw new Error('No data received from station API');
+      const data = await getDust(lat, lon);
+      if (!data) throw new Error('No data received from dust API');
       return data;
     },
   });
 
   useEffect(() => {
-    setStation(data);
-  }, [data, setStation]);
-
-  useEffect(() => {
-    console.log('station ::: ', station);
-  }, [station]);
+    setDust(data);
+  }, [data, setDust]);
 
   if (error) {
-    console.log('getStation api 호출 에러: ', error);
+    console.log('dust api 호출 에러: ', error);
   }
 
   return (
