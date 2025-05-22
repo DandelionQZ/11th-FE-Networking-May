@@ -1,18 +1,19 @@
 import React from 'react';
 import './TimeTemp.css';
-import NightClouds from '../../assets/NightClouds.svg';
-import type { hourlyTimeTemp } from '../../types.ts';
+import type { WeatherHourlyType } from '../../types.ts';
+import { getWeatherIcon } from '../../utils/exchangeIcon.ts';
+import { formatHour } from '../../utils/formatHour.ts';
 
 interface TimeTempProps {
-  timeTemp: hourlyTimeTemp;
+  timeTemp: WeatherHourlyType;
 }
 
 const TimeTemp: React.FC<TimeTempProps> = ({ timeTemp }) => {
   return (
     <div className='time-temp'>
-      <img src={NightClouds} alt='NightClouds' />
-      <div className='time-temp time'>{timeTemp.time}시</div>
-      <div className='time-temp temp'>{timeTemp.temp}º</div>
+      <img src={getWeatherIcon(timeTemp.icon)} alt='NightClouds' />
+      <div className='time-temp time'>{formatHour(timeTemp.hour)}시</div>
+      <div className='time-temp temp'>{timeTemp.temperature}º</div>
     </div>
   );
 };
