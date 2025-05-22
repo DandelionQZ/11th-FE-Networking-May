@@ -7,7 +7,7 @@ import {
   getDayOfWeek,
   getTodayString,
 } from '../../utils/formatDate';
-import { getWeatherIcon } from '../../utils/exchangeIcon';
+import { getWeatherIcon } from '../../utils/formatIcon';
 
 interface AllDayProps {
   day: weeklyDay;
