@@ -4,7 +4,7 @@ import './MainWeather.css';
 import DetailInfo from './DetailInfo';
 import { useWeatherStore } from '../../store/weatherStore';
 import { useShallow } from 'zustand/shallow';
-import { getWeatherIcon } from '../../utils/formatIcon';
+import { getWeatherIcon, getWeatherStatus } from '../../utils/formatIcon';
 import { getDayOrNight } from '../../utils/formatString';
 
 const MainWeather: React.FC = () => {
@@ -27,7 +27,8 @@ const MainWeather: React.FC = () => {
           <div>{current.temperature}º</div>
         </div>
         <div className='current-2nd'>
-          {getDayOrNight(current.weather.icon)} / 흐림
+          {getDayOrNight(current.weather.icon)} /{' '}
+          {getWeatherStatus(current.weather.main)}
         </div>
         <div className='current-3rd'>
           <div>
