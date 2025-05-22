@@ -4,11 +4,15 @@ export type hourlyTimeTemp = {
 };
 
 export type weeklyDay = {
-  yyyymmdd: string;
-  dayTemperature: number;
-  nightTepmerature: number;
-  dayRainPer: number;
-  nightRainPer: number;
+  date: string;
+  morningTemp: number;
+  afternoonTemp: number;
+  weather: {
+    main: string;
+    icon: string;
+  };
+  // dayRainPer: number;
+  // nightRainPer: number;
 };
 
 export type WeatherIconType = {
