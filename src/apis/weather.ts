@@ -14,7 +14,7 @@ export const getDust = async (lat: number, lon: number) => {
     params: { lat, lon },
   });
 
-  const city: string = getCityWord(station.data.data.address);
+  const city: string = getCityWord(station.data.data.address).trim();
 
   const res = await authAxios.get(ENDPOINT.DUST_TODAY, {
     params: {
@@ -22,8 +22,6 @@ export const getDust = async (lat: number, lon: number) => {
       stationName: station.data.data.stationName,
     },
   });
-
-  console.log('getDust ::: ', res.data.data);
 
   return res.data.data;
 };
