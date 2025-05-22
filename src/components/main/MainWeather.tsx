@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ContentTitle from '../ContentTitle';
 import './MainWeather.css';
 import DetailInfo from './DetailInfo';
@@ -29,7 +29,7 @@ const MainWeather: React.FC = () => {
     }))
   );
 
-  const { data, error } = useQuery({
+  const { data, isLoading, error, isError } = useQuery({
     queryKey: ['dust'],
     queryFn: async () => {
       const data = await getDust(lat, lon);
@@ -39,10 +39,12 @@ const MainWeather: React.FC = () => {
   });
 
   useEffect(() => {
-    setDust(data);
-  }, [data, setDust]);
+    if (!isLoading && data) {
+      setDust(data);
+    }
+  }, [isLoading, data, setDust]);
 
-  if (error) {
+  if (isError) {
     console.log('dust api 호출 에러: ', error);
   }
 
