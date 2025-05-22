@@ -1,11 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ContentPage.css';
 import MainWeather from '../components/main/MainWeather';
 import HourlyWeather from '../components/hourly/HourlyWeather';
 import WeeklyWeather from '../components/weekly/WeeklyWeather';
 import LocationEmpty from '../components/main/LocationEmpty';
+import { getTodayWeather } from '../api/weatherApi';
+import { useQuery } from '@tanstack/react-query';
+import { useWeatherStore } from '../store/weatherStore';
+import { useShallow } from 'zustand/shallow';
 
 const ContentPage: React.FC = () => {
+  const lat = 100;
+  const lon = 999;
+
+  const { setCurrent, setHourly, setDaily } = useWeatherStore(
+    useShallow((state) => ({
+      setCurrent: state.setCurrent,
+      setHourly: state.setHourly,
+      setDaily: state.setDaily,
+    }))
+  );
+
+  const { data, error } = useQuery({
+    queryKey: ['todayWeather'],
+    queryFn: () => getTodayWeather(lat, lon),
+  });
+
+  useEffect(() => {
+    if (data) {
+      setCurrent(data.current);
+      setHourly(data.hourly);
+      setDaily(data.daily);
+    }
+  }, [data, setCurrent, setHourly, setDaily]);
+
+  if (error) {
+    console.log('getTodayWeather api 호출 에러: ', error);
+  }
+
   const [isSelected] = useState<boolean>(true);
 
   const display = () => {
