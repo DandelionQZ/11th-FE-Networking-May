@@ -29,6 +29,16 @@ function LocationManager() {
     }
   };
 
+  const deleteLocation = async (locationId: number) => {
+    try {
+      await axios.delete(`http://15.164.233.124:8080/locations/${locationId}`);
+      await fetchLocations();
+    } catch (error) {
+      console.error('삭제 실패:', error);
+      alert('위치 삭제 중 오류가 발생했습니다.');
+    }
+  };
+
   const togglePin = async (locationId: number, currentPinned: boolean) => {
     try {
       await axios.patch('http://15.164.233.124:8080/locations/pin', {
@@ -57,7 +67,11 @@ function LocationManager() {
       </div>
 
       <AddButton onAddSuccess={fetchLocations} />
-      <LocationList locations={locations} onTogglePin={togglePin} />
+      <LocationList
+        locations={locations}
+        onTogglePin={togglePin}
+        onDelete={deleteLocation}
+      />
     </div>
   );
 }
