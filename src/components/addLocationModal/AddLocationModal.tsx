@@ -14,17 +14,13 @@ interface Place {
   x: string; // 경도
   y: string; // 위도
 }
+
 interface AddLocationModalProps {
   onClose: () => void;
-  onSelectPlace: (place: {
-    id: string;
-    place_name: string;
-    x: string;
-    y: string;
-  }) => void;
+  setIsModalOpen: (b: boolean) => void;
 }
 
-function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
+function AddLocationModal({ onClose, setIsModalOpen }: AddLocationModalProps) {
   const [keyword, setKeyword] = useState('');
   const [places, setPlaces] = useState<Place[]>([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
@@ -84,8 +80,8 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
 
       if (response.data.isSuccess) {
         alert('위치가 성공적으로 추가되었습니다!');
-        onSelectPlace(selected);
         onClose();
+        setIsModalOpen(false);
       } else {
         alert('위치 추가에 실패했습니다.');
       }

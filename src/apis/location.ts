@@ -27,9 +27,12 @@ export const postLocations = async (
 export const putLocations = async (locationId: number, isPinned: boolean) => {
   console.log('핀 설정 받은거 :::', locationId, isPinned);
 
-  const res = await authAxios.post(ENDPOINT.LOCATION_INFO, {
-    locationId,
-    isPinned,
+  const res = await authAxios.put(ENDPOINT.LOCATION_INFO, {
+    locationId: locationId,
+    isPinned: isPinned,
   });
+
+  console.log('핀 설정 (putLocations) 응답 :::', res);
+
   return res;
 };

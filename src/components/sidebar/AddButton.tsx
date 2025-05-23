@@ -2,13 +2,8 @@ import React, { useState } from 'react';
 import plusIcon from '../../assets/plus-front-clay.png';
 import AddLocationModal from '../addLocationModal/AddLocationModal';
 import './AddButton.css';
-import axios from 'axios';
 
-interface AddButtonProps {
-  onAddSuccess: () => void;
-}
-
-function AddButton({ onAddSuccess }: AddButtonProps) {
+function AddButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = (e: React.MouseEvent) => {
@@ -17,16 +12,6 @@ function AddButton({ onAddSuccess }: AddButtonProps) {
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSelectPlace = (place: {
-    id: string;
-    place_name: string;
-    x: string;
-    y: string;
-  }) => {
-    onAddSuccess(); // AddLocationModal에서 POST 성공 후 호출됨
     setIsModalOpen(false);
   };
 
@@ -45,7 +30,7 @@ function AddButton({ onAddSuccess }: AddButtonProps) {
       {isModalOpen && (
         <AddLocationModal
           onClose={handleCloseModal}
-          onSelectPlace={handleSelectPlace}
+          setIsModalOpen={setIsModalOpen}
         />
       )}
     </>
