@@ -11,14 +11,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useDustStore } from '../../store/dustStore';
 import { getDustStatus } from '../../utils/dustGrade';
 import { formatDateToKorean } from '../../utils/formatDate';
-import { usePinSelecedStore } from '../../store/pinSelectedStore';
 
 const MainWeather: React.FC = () => {
-  const { pinSelected } = usePinSelecedStore(
-    useShallow((state) => ({
-      pinSelected: state.pinSelected,
-    }))
-  );
+  // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
+  const lat = 37;
+  const lon = 127;
 
   const { current } = useWeatherStore(
     useShallow((state) => ({
@@ -36,7 +33,7 @@ const MainWeather: React.FC = () => {
   const { data, isLoading, error, isError } = useQuery({
     queryKey: ['dust'],
     queryFn: async () => {
-      const data = await getDust(pinSelected.latitude, pinSelected.longitude);
+      const data = await getDust(lat, lon);
       if (!data) throw new Error('No data received from dust API');
       return data;
     },
@@ -56,12 +53,7 @@ const MainWeather: React.FC = () => {
     <div className='weather-main-container'>
       <ContentTitle
         // todo : '롯데월드' 대신에 장소명 작성
-        text={
-          formatDateToKorean(current.datetime) +
-          ' ' +
-          pinSelected.locationName +
-          ' 날씨 현황'
-        }
+        text={formatDateToKorean(current.datetime) + ' 롯데월드' + ' 날씨 현황'}
       />
       {/* 날씨 현황 */}
       <div className='weather-main-current'>
