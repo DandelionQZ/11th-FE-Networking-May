@@ -54,14 +54,18 @@ const LocationList: React.FC = () => {
     // }
   };
 
-  const togglePin = async (locationId: number, currentPinned: boolean) => {
+  const togglePin = async (
+    locationId: number | null,
+    currentPinned: boolean | null
+  ) => {
     // useLocationStore.getState().setIsPinned(123, true);
-
-    try {
-      putLocations(locationId, !currentPinned);
-    } catch (error) {
-      console.error('putLocations 실패 error :', error);
-      alert('핀 상태 변경 중 오류가 발생했습니다.');
+    if (!locationId) {
+      try {
+        putLocations(locationId, !currentPinned);
+      } catch (error) {
+        console.error('putLocations 실패 error :', error);
+        alert('핀 상태 변경 중 오류가 발생했습니다.');
+      }
     }
   };
 
@@ -70,8 +74,7 @@ const LocationList: React.FC = () => {
       {locations.map((loc: locationType) => (
         <LocationPin
           key={loc.locationId}
-          text={loc.locationName}
-          isSelected={loc.isPinned}
+          loc={loc}
           onImageClick={() => togglePin(loc.locationId, loc.isPinned)}
           onTrashClick={() => setPendingDeleteLocation(loc.locationId)}
           showBadge={loc.locationName === '강남역'}

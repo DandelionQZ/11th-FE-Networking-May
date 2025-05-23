@@ -24,7 +24,10 @@ export const postLocations = async (
 };
 
 // 위치 핀 설정 api
-export const putLocations = async (locationId: number, isPinned: boolean) => {
+export const putLocations = async (
+  locationId: number | null,
+  isPinned: boolean
+) => {
   console.log('핀 설정 받은거 :::', locationId, isPinned);
 
   const res = await authAxios.put(ENDPOINT.LOCATION_INFO, {
