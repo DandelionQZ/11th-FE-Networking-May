@@ -5,6 +5,7 @@ import searchIcon from '../../assets/search-icon.svg';
 import checkIcon from '../../assets/checkedicon.svg';
 import axios from 'axios';
 import { useState } from 'react';
+import { postLocations } from '../../apis/location';
 
 interface Place {
   id: string;
@@ -66,18 +67,20 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
       return;
     }
 
-    const body = {
-      locationName: selected.place_name,
-      latitude: lat,
-      longitude: lng,
-    };
+    // const body = {
+    //   locationName: selected.place_name,
+    //   latitude: lat,
+    //   longitude: lng,
+    // };
 
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        'http://15.164.233.124:8080/locations',
-        body
-      );
+      // const response = await axios.post(
+      //   'http://15.164.233.124:8080/locations',
+      //   body
+      // );
+
+      const response = await postLocations(selected.place_name, lat, lng);
 
       if (response.data.isSuccess) {
         alert('위치가 성공적으로 추가되었습니다!');
@@ -87,14 +90,11 @@ function AddLocationModal({ onClose, onSelectPlace }: AddLocationModalProps) {
         alert('위치 추가에 실패했습니다.');
       }
     } catch (error: any) {
-      if (
-        error.response?.data?.message === 'LOCATION_NAME_DUPLICATED_EXCEPTION'
-      ) {
+      if (error.status === 409) {
         alert('이미 등록된 이름입니다.');
       } else {
-        alert('위치 추가 중 오류가 발생했습니다.');
+        alert(`위치 추가 api error : ${error}`); // error : TypeError: onAddSuccess is not a function 발생함
       }
-      console.error('위치 추가 에러:', error);
     } finally {
       setIsLoading(false);
     }
