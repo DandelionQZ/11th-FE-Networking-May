@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './ContentPage.css';
 import MainWeather from '../components/main/MainWeather';
 import HourlyWeather from '../components/hourly/HourlyWeather';
@@ -8,11 +8,14 @@ import { getTodayWeather } from '../apis/weather';
 import { useQuery } from '@tanstack/react-query';
 import { useWeatherStore } from '../store/weatherStore';
 import { useShallow } from 'zustand/shallow';
+import { usePinSelecedStore } from '../store/pinSelectedStore';
 
 const ContentPage: React.FC = () => {
-  // todo : 선택된 위치 정보의 위경도를 불러오도록 변경
-  const lat = 37;
-  const lon = 127;
+  const { pinSelected } = usePinSelecedStore(
+    useShallow((state) => ({
+      pinSelected: state.pinSelected,
+    }))
+  );
 
   const { setCurrent, setHourly, setDaily } = useWeatherStore(
     useShallow((state) => ({
@@ -23,12 +26,16 @@ const ContentPage: React.FC = () => {
   );
 
   const { data, error } = useQuery({
-    queryKey: ['todayWeather'],
+    queryKey: ['todayWeather', pinSelected],
     queryFn: async () => {
-      const data = await getTodayWeather(lat, lon);
+      const data = await getTodayWeather(
+        pinSelected.latitude,
+        pinSelected.longitude
+      );
       if (!data) throw new Error('No data received from weather API');
       return data;
     },
+    enabled: pinSelected.locationName !== '', // locationName이 존재할 때만 실행
   });
 
   useEffect(() => {
@@ -43,10 +50,8 @@ const ContentPage: React.FC = () => {
     console.log('getTodayWeather api 호출 에러: ', error);
   }
 
-  const [isSelected] = useState<boolean>(true);
-
   const display = () => {
-    if (isSelected) {
+    if (pinSelected.locationName !== '') {
       return (
         <>
           <MainWeather />

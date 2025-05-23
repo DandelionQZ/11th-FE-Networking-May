@@ -4,17 +4,10 @@ import AddButton from './AddButton';
 import LocationList from './LocationList';
 import './Sidebar.css';
 import mapPin from '../../assets/map-pin-front-color.png';
-
-export interface Location {
-  locationId: number;
-  locationName: string;
-  latitude: number;
-  longitude: number;
-  pinned: boolean;
-}
+import type { LocationType } from '../../interface';
 
 function LocationManager() {
-  const [locations, setLocations] = useState<Location[]>([]);
+  const [locations, setLocations] = useState<LocationType[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchLocations = async () => {
@@ -28,6 +21,16 @@ function LocationManager() {
       setLoading(false);
     }
   };
+
+  // const deleteLocation = async (locationId: number) => {
+  //   try {
+  //     await axios.delete(`http://15.164.233.124:8080/locations/${locationId}`);
+  //     await fetchLocations();
+  //   } catch (error) {
+  //     console.error('삭제 실패:', error);
+  //     alert('위치 삭제 중 오류가 발생했습니다.');
+  //   }
+  // };
 
   useEffect(() => {
     fetchLocations();
@@ -43,8 +46,8 @@ function LocationManager() {
         <h2 className='sidebar-title'>위치목록</h2>
       </div>
 
-      <AddButton onAddSuccess={fetchLocations} />
-      <LocationList locations={locations} />
+      <AddButton />
+      <LocationList />
     </div>
   );
 }

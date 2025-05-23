@@ -53,3 +53,11 @@ export type dustType = {
   pm25Value: string;
   pm25Grade: string;
 };
+
+export type locationType = {
+  locationId: number;
+  locationName: string;
+  latitude: number;
+  longitude: number;
+  isPinned: boolean;
+};

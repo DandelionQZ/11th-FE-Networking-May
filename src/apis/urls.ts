@@ -16,4 +16,8 @@ export const ENDPOINT = {
 
   // dust
   DUST_TODAY: '/api/dust',
+
+  // location
+  LOCATION_PIN: '/api/locations/pin',
+  LOCATION_INFO: '/api/locations',
 };

@@ -9,3 +9,11 @@ export interface TodayWeatherInterface {
   hourly: WeatherHourlyType[];
   daily: WeatherDailyType[];
 }
+
+export interface LocationType {
+  locationId: number;
+  locationName: string;
+  latitude: number;
+  longitude: number;
+  pinned: boolean;
+}
