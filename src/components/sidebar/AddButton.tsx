@@ -20,25 +20,14 @@ function AddButton({ onAddSuccess }: AddButtonProps) {
     setIsModalOpen(false);
   };
 
-  const handleSelectPlace = async (place: {
+  const handleSelectPlace = (place: {
     id: string;
     place_name: string;
     x: string;
     y: string;
   }) => {
-    try {
-      await axios.post('http://15.164.233.124:8080/locations', {
-        locationName: place.place_name,
-        latitude: parseFloat(place.y),
-        longitude: parseFloat(place.x),
-      });
-
-      onAddSuccess(); // 서버에서 목록 새로고침
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error('위치 추가 실패:', error);
-      alert('위치 추가에 실패했습니다.');
-    }
+    onAddSuccess(); // AddLocationModal에서 POST 성공 후 호출됨
+    setIsModalOpen(false);
   };
 
   return (

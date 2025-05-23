@@ -29,6 +29,19 @@ function LocationManager() {
     }
   };
 
+  const togglePin = async (locationId: number, currentPinned: boolean) => {
+    try {
+      await axios.patch('http://15.164.233.124:8080/locations/pin', {
+        locationId,
+        isPinned: !currentPinned,
+      });
+      await fetchLocations();
+    } catch (error) {
+      console.error('핀 토글 실패:', error);
+      alert('핀 상태 변경 중 오류가 발생했습니다.');
+    }
+  };
+
   useEffect(() => {
     fetchLocations();
   }, []);
@@ -44,7 +57,7 @@ function LocationManager() {
       </div>
 
       <AddButton onAddSuccess={fetchLocations} />
-      <LocationList locations={locations} />
+      <LocationList locations={locations} onTogglePin={togglePin} />
     </div>
   );
 }

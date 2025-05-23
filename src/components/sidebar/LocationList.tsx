@@ -4,9 +4,13 @@ import type { Location } from './LocationManager';
 
 interface LocationListProps {
   locations: Location[];
+  onTogglePin: (locationId: number, currentPinned: boolean) => void;
 }
 
-const LocationList: React.FC<LocationListProps> = ({ locations }) => {
+const LocationList: React.FC<LocationListProps> = ({
+  locations,
+  onTogglePin,
+}) => {
   return (
     <div className='location-list'>
       {locations.map((loc) => (
@@ -14,8 +18,8 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => {
           key={loc.locationId}
           text={loc.locationName}
           isSelected={loc.pinned}
-          onImageClick={() => {}} // 핀 토글 구현할 때 연결
-          onTrashClick={() => {}} // 삭제 기능 나구현 시 연결
+          onImageClick={() => onTogglePin(loc.locationId, loc.pinned)}
+          onTrashClick={() => {}}
           showBadge={loc.locationName === '강남역'}
         />
       ))}
