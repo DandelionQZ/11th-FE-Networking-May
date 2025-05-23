@@ -7,6 +7,7 @@ import { getLocations, putLocations } from '../../apis/location';
 import type { locationType } from '../../types';
 import { useLocationStore } from '../../store/locationStore';
 import { useShallow } from 'zustand/shallow';
+import { useNavigate } from 'react-router-dom';
 
 // interface LocationListProps {
 //   locations: Location[];
@@ -20,12 +21,23 @@ import { useShallow } from 'zustand/shallow';
 //   onDelete,
 // }) => {
 const LocationList: React.FC = () => {
+  const navigate = useNavigate();
+
   const { data } = useQuery({
     queryKey: ['locations'],
     queryFn: async () => {
-      const data = await getLocations();
-      if (!data) throw new Error('No data received from getLocations API');
-      return data;
+      try {
+        return await getLocations();
+      } catch (err: any) {
+        if (err.status === 403 || 500) {
+          navigate('/login');
+        }
+        throw err;
+      }
+
+      // const data = await getLocations();
+      // if (!data) throw new Error('No data received from getLocations API');
+      // return data;
     },
   });
 
